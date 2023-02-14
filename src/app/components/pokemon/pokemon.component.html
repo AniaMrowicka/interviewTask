@@ -1,0 +1,29 @@
+<form (ngSubmit)="showNameAndAbilities()" [formGroup]="pokemonForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+  <button class="btn btn-primary" [disabled]="hasErrors()" type="submit">Submit</button>
+</form>
+<br>
+You provided name: {{name}}
+<br>
+<div *ngIf="abilities| async">Abilities:
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>URL</th>
+      <th>Slot</th>
+      <th>Is hidden</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ability of abilities |async">
+        <td>{{ability.ability.name}}</td>
+        <td>{{ability.ability.url}}</td>
+        <td>{{ability.is_hidden}}</td>
+        <td>{{ability.slot}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
